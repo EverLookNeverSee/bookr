@@ -25,3 +25,14 @@ class Contributor(models.Model):
     first_name = models.CharField(max_length=50, help_text="The contributor's first name or names")
     last_name = models.CharField(max_length=50, help_text="The contributor's last name or names")
     email = models.EmailField(help_text="The contact email for the contributor.")
+
+
+class BookContributor(models.Model):
+    class ContributionRole(models.TextChoices):
+        AUTHOR = "AUTHOR", "Author"
+        CO_AUTHOR = "CO_AUTHOR", "Co-Author"
+        EDITOR = "EDITOR", "Editor"
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Contributor, on_delete=models.CASCADE)
+    role = models.CharField(max_length=20, choices=ContributionRole.choices,
+                            verbose_name="The role this contributor had in the book.")
