@@ -1,14 +1,3 @@
 from django.shortcuts import render
-
-
-def index(request):
-    return render(request, "base.html")
-
-
-def search(request):
-    qr = request.GET.get("search")
-    return render(request, "search_result.html", {"search_query": qr})
-
-
-def welcome_view(request):
-    return render(request, "base.html")
+from .models import Book, Review
+from .utils import average_rating
