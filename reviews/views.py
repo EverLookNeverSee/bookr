@@ -19,7 +19,7 @@ def book_list(request):
             'book_rating': book_rating,
             'number_of_reviews': number_of_reviews
         })
-        context = {
-            'book_list': book_list_,
-        }
-        return render(request, "reviews/book_list.html", context)
+    context = {
+        'book_list': book_list_
+    }
+    return render(request, 'reviews/books_list.html', context)
