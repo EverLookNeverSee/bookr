@@ -1,12 +1,11 @@
 from django.shortcuts import render
-
 from .models import Book, Review
 from .utils import average_rating
 
 
 def book_list(request):
     books = Book.objects.all()
-    book_list = []
+    book_list_ = list()
     for book in books:
         reviews = book.review_set.all()
         if reviews:
@@ -15,11 +14,12 @@ def book_list(request):
         else:
             book_rating = None
             number_of_reviews = 0
-        book_list.append({'book': book,
-                          'book_rating': book_rating,
-                          'number_of_reviews': number_of_reviews})
-
-    context = {
-        'book_list': book_list
-    }
-    return render(request, 'reviews/books_list.html', context)
+        book_list_.append({
+            'book': book,
+            'book_rating': book_rating,
+            'number_of_reviews': number_of_reviews
+        })
+        context = {
+            'book_list': book_list_,
+        }
+        return render(request, "reviews/book_list.html", context)
