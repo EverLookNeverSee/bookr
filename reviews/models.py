@@ -43,7 +43,7 @@ class BookContributor(models.Model):
         CO_AUTHOR = "CO_AUTHOR", "Co-Author"
         EDITOR = "EDITOR", "Editor"
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    contributor = models.ForeignKey(Contributor, on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Contributor, on_delete=models.PROTECT)
     role = models.CharField(max_length=20, choices=ContributionRole.choices,
                             verbose_name="The role this contributor had in the book.")
 
